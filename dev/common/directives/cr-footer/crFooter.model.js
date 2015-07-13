@@ -27,7 +27,7 @@ function(subscriberApi)
                if(!self.email)
                {
                   validationResult.isValid = false;
-                  validationResult.errors.push('Email is required');
+                  validationResult.errors.push('Email required');
                }
 
                return validationResult;

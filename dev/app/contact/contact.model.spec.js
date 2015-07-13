@@ -79,7 +79,7 @@ describe('app.model.contact', function()
          });
 
 
-         describe('model.send()', function()
+         describe('model.getAddressList()', function()
          {
             var $scope, model, deferred, addressApi, response;
 
