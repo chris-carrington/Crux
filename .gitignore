@@ -1,0 +1,5 @@
+config/node_modules/
+config/temp/
+config/vendor/
+www/
+.DS_Store

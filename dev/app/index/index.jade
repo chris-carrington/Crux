@@ -1,0 +1,55 @@
+.index-ctrl
+   .carousel-wrapper
+      carousel(interval="3000")
+         slide(ng-repeat="slide in [1, 2, 3]")
+            img(ng-src="images/slideshow/{{slide}}.jpg")
+            .carousel-caption
+               h1 CRUX
+               .prompt
+                  div Your #1 destination for clothing, accessories,
+                  div and gadgets!
+               button.btn.btn-primary CHECK IT OUT
+
+   .hot-wrapper 
+      .container
+         .row
+            .col-md-12
+               h3.heading-title 
+                  span STYLE INSPIRATION
+         .row
+            .col-xs-6.col-md-3.column(ng-repeat="style in model.styleList track by style.id")
+               img.img-thumbnail(ng-src="images/style/{{style.id}}.jpg")
+               .caption {{style.name}}
+
+   .featured-wrapper
+      .container
+         .row
+            .col-sm-8.column
+               img(src="images/featured/1.png")
+            .col-sm-4
+               .row
+                  .col-sm-12.watches-collection.column
+                     img(src="images/featured/2.png")
+                  .col-sm-12.column
+                     img(src="images/featured/3.png")
+
+   .blog-brand-wrapper
+      .container
+         .row
+            .col-md-6.blog-wrapper
+               h3.heading-title 
+                  span LATEST BLOGS
+               .row
+                  .article.col-xs-6(ng-repeat="blog in model.blogList track by blog.id")
+                     img.img-thumbnail(ng-src="images/blogs/{{blog.id}}.png")
+                     h5 {{blog.title}}
+                     p {{blog.content}}
+                     a(href="javascript:void(0)") Read more
+
+            .col-md-6.brand-wrapper
+               h3.heading-title 
+                  span OUR BRANDS
+               .row
+                  .col-xs-4.column(ng-repeat="brand in [1, 2, 3, 4, 5, 6]")
+                     img(ng-src="images/brands/{{brand}}.jpg")
+

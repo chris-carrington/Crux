@@ -1,0 +1,11 @@
+.prompt-ctrl
+   .modal-header 
+      button.close(ng-click="$dismiss()" type='button' data-dismiss='modal' aria-label='Close')
+         span(aria-hidden='true') &times;
+      h4.modal-title {{model.title}}
+
+   .modal-body
+      .alert(ng-class="'alert-' + model.type")
+         span(ng-if="!model.isArray") {{model.prompt}}
+         ul(ng-if="model.isArray")
+            li(ng-repeat="x in model.prompt") {{x}}

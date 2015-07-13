@@ -1,0 +1,29 @@
+header
+   nav.navbar.navbar-default
+      .container
+         .navbar-header
+            button(type="button" data-toggle="collapse" data-target="#header-collapse" aria-expanded="false").navbar-toggle.collapsed
+               .sr-only Toggle Navigation
+               .icon-bar
+               .icon-bar
+               .icon-bar
+            a(ui-sref="index").navbar-brand 
+               i.logo.fa.fa-skyatlas 
+               span CRUX
+
+         .collapse.navbar-collapse(id="header-collapse")
+            ul.nav.navbar-nav.navbar-right
+               li(ui-sref-active="active")
+                  a(ui-sref="index") HOME 
+               li(ui-sref-active="active")
+                  a(href="javascript:void(0)") MENS
+               li(ui-sref-active="active")
+                  a(href="javascript:void(0)") WOMENS
+               li(ui-sref-active="active")
+                  a(href="javascript:void(0)") ACCESSORIES
+               li(ui-sref-active="active")
+                  a(href="javascript:void(0)") TECH
+               li(ui-sref-active="active")
+                  a(href="javascript:void(0)") BLOG
+               li(ui-sref-active="active")
+                  a(ui-sref="contact") CONTACT

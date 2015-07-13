@@ -1,0 +1,26 @@
+[
+   {
+      "id": 1,
+      "name": "UNITED STATES",
+      "address": "5th Avenue, 10019 New York, United States",
+      "tel1": "+1 310 666 8888",
+      "tel2": "+1 310 666 9999",
+      "email": "store_1@companyname.com"
+   },
+   {
+      "id": 2,
+      "name": "CANADA",
+      "address": "Alexander Street, Vancouver, BC V6A 1E1, Canada",
+      "tel1": "+1 310 666 8888",
+      "tel2": "+1 310 666 9999",
+      "email": "store_1@companyname.com"
+   },
+   {
+      "id": 3,
+      "name": "ITALY",
+      "address": "Pzza Martiri Olivetta, 16, 16034, Portofino, Italy",
+      "tel1": "+1 310 666 8888",
+      "tel2": "+1 310 666 9999",
+      "email": "store_1@companyname.com"
+   }
+]

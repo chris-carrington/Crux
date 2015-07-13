@@ -1,0 +1,76 @@
+{
+   "options":
+   {
+      "expressPort": 4000,
+      "liveReloadPort": 35729,
+      "jsFileName": "app.js",
+      "cssFileName": "app.css",
+      "testingBrowser": "PhantomJS"
+   },
+   "dir":
+   {
+      "tempDirectory": "temp",
+      "buildDirectory": "../www",
+      "jsBuildDirectory": "../www/js",
+      "imgBuildDirectory": "../www/images",
+      "jsonBuildDirectory": "../www/json",
+      "fontBuildDirectory": "../www/fonts",
+      "cssBuildDirectory": "../www/css",
+      "imgSrcDirectory": "../dev/common/images/**/*", 
+      "jsonSrcDirectory": "../dev/common/json/**/*",   
+      "tplTempDirectory": "temp/**/*.html",   
+      "indexJadeFile": "../dev/app/_root/index.jade",
+      "tplFile": "templates.js",
+      "appJsList": 
+      [
+         "../dev/app/**/*.js", 
+         "../dev/common/**/*.js"
+      ],
+      "appCssList":
+      [
+         "../dev/app/**/*.less", 
+         "../dev/common/**/*.less"
+      ],
+      "vendorJsList":
+      [
+         "vendor/jquery/dist/jquery.min.js",
+         "vendor/angular/angular.js",
+         "vendor/angular-bootstrap/ui-bootstrap-tpls.js",
+         "vendor/bootstrap/dist/js/bootstrap.min.js",
+         "vendor/angular-ui-router/release/angular-ui-router.js",
+         "vendor/lodash.lodash.min.js"
+      ],
+      "vedorFontList": 
+      [
+         "vendor/bootstrap/fonts/**/*",
+         "vendor/fontawesome/fonts/**/*"
+      ],
+      "testingJsList":
+      [
+         "!../dev/app/**/*.spec.js", 
+         "!../dev/common/**/*.spec.js"
+      ],
+      "allLessAndCssList": 
+      [
+         "vendor/bootstrap/dist/css/bootstrap.css",
+         "vendor/fontawesome/css/font-awesome.css",
+         "../dev/app/**/*.less", 
+         "../dev/common/**/*.less"
+      ],
+      "appAndCommonJsList":
+      [
+         "../dev/app/**/*.js", 
+         "../dev/common/**/*.js"
+      ],
+      "appAndCommonLessList":
+      [
+         "../dev/app/**/*.less", 
+         "../dev/common/**/*.less"
+      ],
+      "appAndCommonJadeList":
+      [
+         "../dev/app/**/*.jade", 
+         "../dev/common/**/*.jade"
+      ]
+   }      
+}
