@@ -1,0 +1,47 @@
+[
+   {
+      "id": 1,
+      "name": "Accessories",
+      "count": 1
+   },
+   {
+      "id": 2,
+      "name": "Bags",
+      "count": 4
+   },
+   {
+      "id": 3,
+      "name": "Caps and Hats",
+      "count": 5
+   },
+   {
+      "id": 4,
+      "name": "Gloves",
+      "count": 2
+   },
+   {
+      "id": 5,
+      "name": "Jewellery",
+      "count": 9
+   },
+   {
+      "id": 6,
+      "name": "Mens",
+      "count": 3
+   },
+   {
+      "id": 7,
+      "name": "Scarves",
+      "count": 2
+   },
+   {
+      "id": 8,
+      "name": "Shoes",
+      "count": 1
+   },
+   {
+      "id": 9,
+      "name": "Womens",
+      "count": 8
+   }
+]

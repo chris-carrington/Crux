@@ -1,0 +1,50 @@
+[
+   {
+      "id": 1,
+      "name": "Happy Ninja",
+      "price": "$35.00",
+      "rating": 3
+   },
+   {
+      "id": 2,
+      "name": "Ninja Silhouette",
+      "price": "$25.00",
+      "rating": 5
+   },
+   {
+      "id": 3,
+      "name": "Premium Quality",
+      "price": "$20.00",
+      "rating": 3
+   },
+   {
+      "id": 4,
+      "name": "Happy Ninja",
+      "price": "$35.00",
+      "rating": 3
+   },
+   {
+      "id": 5,
+      "name": "Woo Hat",
+      "price": "$9.00",
+      "rating": 1
+   },
+   {
+      "id": 6,
+      "name": "Woo Belt",
+      "price": "$12.00",
+      "rating": 4
+   },
+   {
+      "id": 7,
+      "name": "Woo Hat Plus",
+      "price": "$15.00",
+      "rating": 1
+   },
+   {
+      "id": 8,
+      "name": "Woo Boot",
+      "price": "$20.00",
+      "rating": 3
+   }
+]

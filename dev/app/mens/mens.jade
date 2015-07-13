@@ -1,0 +1,49 @@
+.mens-ctrl
+   .container
+      .row
+
+         .main-section.col-sm-9
+            .filter-wrapper.row
+               .col-xs-6
+                  .switch-wrapper
+                     span.fa.fa-th
+                     span.fa.fa-th-list.active
+               .col-xs-6
+                  .text-wrapper.text-right
+                     span Default Sorting
+                     span.fa.fa-caret-down
+
+            .product-wrapper.row
+               .col-sm-3.col-xs-6(ng-repeat="product in model.productList track by product.id")
+                  .product
+                     img.img-thumbnail(ng-src="images/product/{{product.id}}.jpg")
+                     .caption {{product.price}}
+                     .name {{product.name}}
+                     rating(ng-model="product.rating" max="5" readonly="true" state-off="'glyphicon-star off'" state-on="'glyphicon-star on'")
+                     .btn.btn-primary.btn-block Add to cart
+                     .divider
+
+            .filter-wrapper.results-wrapper.row
+               .col-xs-12
+                  .text-wrapper.text-right Showing all 8 results
+
+
+         .sidebar.col-sm-3
+            .category-widget.widget
+               h3.widget-title 
+                  span CATEGORIES
+               .row(ng-repeat="category in model.categoryList track by category.id")
+                  .col-xs-6 {{category.name}}
+                  .col-xs-6.count ({{category.count}})
+                  .clear-fix
+
+            .ad-widget.widget
+               img.img-thumbnail(src="images/ads/1.png")
+   
+            .tags-widget.widget
+               h3.widget-title 
+                  span TAGS
+               .row
+                  button.btn.btn-default(ng-repeat="tag in model.tagList track by tag.id") {{tag.name}}
+
+                  

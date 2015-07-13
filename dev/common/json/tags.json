@@ -1,0 +1,42 @@
+[
+   {
+      "id": 1,
+      "name": "Accessories"
+   },
+   {
+      "id": 3,
+      "name": "Bestseller"
+   },
+   {
+      "id": 2,
+      "name": "Bags"
+   },
+   {
+      "id": 4,
+      "name": "Bottoms"
+   },
+   {
+      "id": 5,
+      "name": "Dresses"
+   },
+   {
+      "id": 6,
+      "name": "Fashion"
+   },
+   {
+      "id": 7,
+      "name": "Men"
+   },
+   {
+      "id": 8,
+      "name": "Women"
+   },
+   {
+      "id": 9,
+      "name": "Shoes"
+   },
+   {
+      "id": 10,
+      "name": "Specials"
+   }
+]
