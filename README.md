@@ -1,6 +1,6 @@
 #Demo
 * <a href="https://s3.amazonaws.com/chris-crux/index.html" target="_blank">Click Here</a>
-* `Home Page` & `Contact Page` are functional
+* `Home Page`, `Mens Page` & `Contact Page` are functional
 
 #Features
 * JS unit tests
