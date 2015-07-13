@@ -1,4 +1,5 @@
 angular.module('app.ctrl.contact', [
+   'ui.router',
    'app.model.contact',
    'app.ctrl.prompt'
 ])
@@ -22,19 +23,17 @@ angular.module('app.ctrl.contact', [
 
 
 
-.controller('ContactCtrl', ['$scope', 'contactModel',
-
-function($scope, contactModel)
+.controller('ContactCtrl', ['$scope', 'contactModel', function($scope, contactModel)
 {
    $scope.model = contactModel.newModel();
    $scope.model.getAddressList();
+   
 
    $scope.send = function()
    {
-      var validationResult = $scope.model.validate();
-
-      $scope.model.isSuccessDisplayed = false;
       $scope.model.errorList.length = 0;
+      $scope.model.isSuccessDisplayed = false;
+      var validationResult = $scope.model.validate();      
 
       if(validationResult.isValid)
       {

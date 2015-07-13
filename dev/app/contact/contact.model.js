@@ -32,13 +32,15 @@ function(addressApi, contactApi)
             send: function()
             {
                var self = this;
-               
-               return contactApi.post({
+               var params = 
+               {
                   firstName: self.firstName,
                   lastName: self.lastName,
                   email: self.email,
                   comment: self.comment
-               });
+               };
+               
+               return contactApi.post(params);
             },
             validate: function()
             {
