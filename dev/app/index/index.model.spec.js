@@ -49,7 +49,7 @@ describe('app.model.index', function()
          });
 
 
-         describe('model.getBlogs()', function()
+         describe('model.getStyle()', function()
          {
             var $scope, model, deferred, styleApi, response;
 
