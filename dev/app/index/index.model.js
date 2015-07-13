@@ -20,7 +20,7 @@ function(blogsApi, styleApi)
                var self = this;
                var params = {count:4};
 
-               styleApi.get(params).then(function(response)
+               return styleApi.get(params).then(function(response)
                {
                   self.styleList = response;
                });
@@ -30,7 +30,7 @@ function(blogsApi, styleApi)
                var self = this;
                var params = {count:2};
 
-               blogsApi.get(params).then(function(response)
+               return blogsApi.get(params).then(function(response)
                {
                   self.blogList = response;
                });
