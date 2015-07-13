@@ -3,3 +3,4 @@ config/temp/
 config/vendor/
 www/
 .DS_Store
+git-credential-osxkeychain

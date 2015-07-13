@@ -4,6 +4,7 @@
 
 #Features
 * JS unit tests
+* Responsive design for mobile, tablet, and desktop
 * Clean `MVC Paradigm` where every ctrl has a view & model
 * All custom built gulp, npm, bower, & karma configuration files
 * Multiple `GET` & `POST` request examples
