@@ -48,22 +48,22 @@ function(addressApi, contactApi)
                if(!self.firstName)
                {
                   validationResult.isValid = false;
-                  validationResult.errors.push('First name is required');
+                  validationResult.errors.push('First name required');
                }
                if(!self.lastName)
                {
                   validationResult.isValid = false;
-                  validationResult.errors.push('Last name is required');
+                  validationResult.errors.push('Last name required');
                }
                if(!self.email)
                {
                   validationResult.isValid = false;
-                  validationResult.errors.push('Email is required');
+                  validationResult.errors.push('Email required');
                }
                if(!self.comment)
                {
                   validationResult.isValid = false;
-                  validationResult.errors.push('A comment is required');
+                  validationResult.errors.push('Comment required');
                }
 
                return validationResult;

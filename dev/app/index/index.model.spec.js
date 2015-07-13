@@ -36,7 +36,7 @@ describe('app.model.index', function()
             });
 
             
-            it('model.race to []', function()
+            it('model.blogList to []', function()
             {
                expect(model.blogList).toEqual([]);
             });

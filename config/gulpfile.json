@@ -38,7 +38,7 @@
          "vendor/angular-bootstrap/ui-bootstrap-tpls.js",
          "vendor/bootstrap/dist/js/bootstrap.min.js",
          "vendor/angular-ui-router/release/angular-ui-router.js",
-         "vendor/lodash.lodash.min.js"
+         "vendor/lodash/lodash.min.js"
       ],
       "vedorFontList": 
       [
