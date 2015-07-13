@@ -1,4 +1,5 @@
 angular.module('app.ctrl.index', [
+   'ui.router',
    'app.model.index'
 ])
 
