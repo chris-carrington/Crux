@@ -1,7 +1,7 @@
 angular.module('app', [
    'app.config.base',
-   'app.config.directives',
-   'app.config.controllers'
+   'app.config.states',
+   'app.config.directives'
 ])
 
 
