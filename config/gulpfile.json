@@ -17,7 +17,7 @@
       "fontBuildDirectory": "../www/fonts",
       "cssBuildDirectory": "../www/css",
       "imgSrcDirectory": "../dev/common/images/**/*", 
-      "jsonSrcDirectory": "../dev/common/json/**/*",   
+      "jsonSrcDirectory": "../dev/common/json/**/*",
       "tplTempDirectory": "temp/**/*.html",   
       "indexJadeFile": "../dev/app/_root/index.jade",
       "tplFile": "templates.js",

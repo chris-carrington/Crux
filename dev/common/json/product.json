@@ -1,7 +1,7 @@
 [
    {
       "id": 1,
-      "name": "Happy Ninja",
+      "name": "Ninja Scarf",
       "price": "$35.00",
       "rating": 3
    },
@@ -13,7 +13,7 @@
    },
    {
       "id": 3,
-      "name": "Premium Quality",
+      "name": "Premium Bag",
       "price": "$20.00",
       "rating": 3
    },

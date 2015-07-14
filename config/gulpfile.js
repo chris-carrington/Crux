@@ -11,6 +11,7 @@ var npm =
    gulpJshint: require('gulp-jshint'),
    gulpConcat: require('gulp-concat'),
    tinyLiveReload: require('tiny-lr'),
+   mergeStream: require('merge-stream'),
    gulpConcatCss: require('gulp-concat-css'),
    gulpMinifyCss: require('gulp-minify-css'),
    gulpLiveReload: require('gulp-livereload'),
@@ -36,9 +37,9 @@ var options = require('./gulpfile.json').options;
 // gulp-jshint
 // https://www.npmjs.com/package/gulp-jshint/
 // Helps to detect errors and potential problems in code.
-npm.gulp.task('js-hint', function() 
+npm.gulp.task('js-hint', ['tpl-compile', 'js-compile'], function() 
 {
-   npm.gulp.src(dir.appJsList)
+   return npm.gulp.src(dir.appJsList)
       .pipe(npm.gulpJshint())
       .pipe(npm.gulpJshint.reporter('default'));
 });
@@ -49,14 +50,14 @@ npm.gulp.task('js-hint', function()
 // gulp-karma
 // http://jbavari.github.io/blog/2014/06/11/unit-testing-angularjs-services/
 // Setup for the Karma/Jasmine unit tests
-npm.gulp.task('unit-tests', function() 
+npm.gulp.task('unit-tests', ['tpl-compile', 'js-compile', 'js-hint'], function() 
 {
    var options = {
       action: 'run',
       configFile: 'karma.conf.js'
    };
 
-   npm.gulp.src('./dummy') // files are grabed via karam.conf.js so use a dummy
+   return npm.gulp.src('./dummy') // files are grabed via karam.conf.js so use a dummy
       .pipe(npm.gulpKarma(options))
       .on('error', function() { this.emit('end'); });
 });
@@ -75,7 +76,7 @@ npm.gulp.task('tpl-compile', function()
       module: 'templates-main'
    };
 
-   npm.gulp.src(dir.appAndCommonJadeList)
+   return npm.gulp.src(dir.appAndCommonJadeList)
       .pipe(npm.gulpJade(true))
       .pipe(npm.gulpAngularTemplateCache(options))
       .pipe(npm.gulp.dest(dir.tempDirectory));  
@@ -87,7 +88,7 @@ npm.gulp.task('tpl-compile', function()
 // gulp-concat
 // https://github.com/wearefractal/gulp-concat
 // Compile all vendor and application js into one js file
-npm.gulp.task('js-compile', function() 
+npm.gulp.task('js-compile', ['tpl-compile'], function() 
 {
    var array = [];
 
@@ -96,7 +97,7 @@ npm.gulp.task('js-compile', function()
    array = array.concat(dir.appJsList); // app files
    array = array.concat(dir.testingJsList); // exclude testing files
 
-   npm.gulp.src(array)
+   return npm.gulp.src(array)
       .pipe(npm.gulpConcat(options.jsFileName))
       .pipe(npm.gulp.dest(dir.jsBuildDirectory));  
 });
@@ -111,7 +112,7 @@ npm.gulp.task('js-compile', function()
 // Compile & minify all vendor css and application less into one css file
 npm.gulp.task('css-compile', function() 
 {
-   npm.gulp.src(dir.allLessAndCssList)
+   return npm.gulp.src(dir.allLessAndCssList)
       .pipe(npm.gulpLess())
       .pipe(npm.gulpConcat(options.cssFileName))
       .pipe(npm.gulpMinifyCss())
@@ -124,9 +125,9 @@ npm.gulp.task('css-compile', function()
 // gulp-jade
 // https://www.npmjs.com/package/gulp-jade
 // Compile index.jade -> index.html
-npm.gulp.task('index', function() 
+npm.gulp.task('index', ['tpl-compile', 'js-compile'], function() 
 {
-   npm.gulp.src(dir.indexJadeFile)
+   return npm.gulp.src(dir.indexJadeFile)
       .pipe(npm.gulpJade(true))
       .pipe(npm.gulp.dest(dir.buildDirectory));
 });
@@ -134,52 +135,72 @@ npm.gulp.task('index', function()
 
 
 
-// gulp-copy
+// gulp-copy & merge-stream
 // http://stackoverflow.com/a/27433579
+// https://www.npmjs.com/package/merge-stream
 // Recursively copy directories from dev -> build
 npm.gulp.task('copy-assets', function()
 {
-   npm.gulp.src(dir.imgSrcDirectory)
+   var imgStream = npm.gulp.src(dir.imgSrcDirectory)
       .pipe(npm.gulp.dest(dir.imgBuildDirectory));
 
-   npm.gulp.src(dir.vedorFontList)
+   var fontStream = npm.gulp.src(dir.vedorFontList)
       .pipe(npm.gulp.dest(dir.fontBuildDirectory));
 
-   npm.gulp.src(dir.jsonSrcDirectory)
+   var jsonStream = npm.gulp.src(dir.jsonSrcDirectory)
       .pipe(npm.gulp.dest(dir.jsonBuildDirectory));
+
+   return npm.mergeStream(imgStream, fontStream).add(jsonStream);
 });
 
 
 
 
-// connect-livereload & express & tiny-lr
-// http://rhumaric.com/2014/01/livereload-magic-gulp-style/
-// Setup for the express and live reload server
-// Watch the less js and jade files and run tasks when they're saved
-npm.gulp.task('default', ['js-hint', 'unit-tests', 'tpl-compile', 'js-compile', 'css-compile', 'copy-assets', 'index'], function()
+// Server variables that will be utilized in the gulp server task
+// and the gulp default task. Because they need access to
+// multiple callbacks they need to be declared outside both of them
+var server = 
 {
-   var app = npm.express();
-   app.use(npm.connectLiveReload());
-   app.use(npm.express.static(dir.buildDirectory));
-   app.listen(options.expressPort);
-   
-   var liveReload = npm.tinyLiveReload();
-   liveReload.listen(options.liveReloadPort);
+   instance: npm.express(),
+   liveReload: npm.tinyLiveReload()
+};
 
-   function notifyLiveReload(vinyl) 
+
+
+
+// Initializes an express server and live reload listener. Must wait for
+// all default tasks to complete before the server can be built.
+npm.gulp.task('server', ['unit-tests', 'css-compile', 'copy-assets', 'index'], function()
+{
+   server.instance.use(npm.connectLiveReload());
+   server.instance.use(npm.express.static(dir.buildDirectory));
+   server.instance.listen(options.expressPort);
+   server.liveReload.listen(options.liveReloadPort);
+});
+
+
+
+
+// gulp-watch
+// http://rhumaric.com/2014/01/livereload-magic-gulp-style/
+// Initialize watches for all assets and notify the live reload server when one changes
+npm.gulp.task('default', ['unit-tests', 'css-compile', 'copy-assets', 'index', 'server'], function()
+{
+   function initializeWatch(stream, todo)
    {
-      var fileName = npm.path.relative(dir.buildDirectory, vinyl.path);
-      liveReload.changed({ body: {files: [fileName]} });
+      npm.gulp.watch(stream, function(vinyl)
+      {
+         npm.gulp.run(todo, function()
+         {
+            var fileName = npm.path.relative(dir.buildDirectory, vinyl.path);
+            server.liveReload.changed({ body: {files: [fileName]} });
+         });
+      });
    }
 
-   npm.gulp.watch(dir.appAndCommonLessList, ['css-compile']);
-   npm.gulp.watch(dir.appAndCommonJsList, ['js-hint', 'unit-tests', 'js-compile']);
-   npm.gulp.watch(dir.appAndCommonJadeList, ['tpl-compile', 'js-compile', 'index']);  
-   npm.gulp.watch(dir.imgSrcDirectory, ['copy-assets']);  
-   npm.gulp.watch(dir.jsonSrcDirectory, ['copy-assets']);  
-
-   npm.gulp.watch(dir.appAndCommonJsList, notifyLiveReload);
-   npm.gulp.watch(dir.appAndCommonLessList, notifyLiveReload);
-   npm.gulp.watch(dir.appAndCommonJadeList, notifyLiveReload);
+   initializeWatch(dir.appAndCommonJsList, 'unit-tests');
+   initializeWatch(dir.appAndCommonLessList, 'css-compile');
+   initializeWatch(dir.appAndCommonJadeList, 'index');
+   initializeWatch(dir.imgSrcDirectory, 'copy-assets');
+   initializeWatch(dir.jsonSrcDirectory, 'copy-assets');
 });
-
