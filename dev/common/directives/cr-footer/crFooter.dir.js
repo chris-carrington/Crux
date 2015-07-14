@@ -13,7 +13,7 @@ function($modal, crFooterModel)
       scope: {},
       restrict: 'E',
       templateUrl: 'directives/cr-footer/crFooter.html',
-      link: function($scope, attrs, element)
+      link: function($scope, element, attrs)
       {
          $scope.model = crFooterModel.newModel();
 
