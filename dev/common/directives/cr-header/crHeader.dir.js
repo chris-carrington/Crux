@@ -12,7 +12,7 @@ angular.module('app.dir.crHeader', [])
       {
          var $navbar = $(element[0]);
 
-         $navbar.find('.nav a').on('click', function()
+         $navbar.find('.nav a, .navbar-brand').on('click', function()
          {
             $navbar.find('.collapse.navbar-collapse').collapse('hide');
          });
